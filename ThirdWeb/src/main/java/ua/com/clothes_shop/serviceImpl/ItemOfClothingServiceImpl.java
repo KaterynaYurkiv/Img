@@ -3,11 +3,6 @@ package ua.com.clothes_shop.serviceImpl;
 import java.math.BigDecimal;
 import java.util.List;
 
-
-
-
-
-
 //import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,10 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 //import org.springframework.transaction.annotation.Transactional;
 
-
-
-
-
+import org.springframework.web.multipart.MultipartFile;
 
 import ua.com.clothes_shop.dao.ColorDao;
 import ua.com.clothes_shop.dao.ItemOfClothingDao;
@@ -33,6 +25,8 @@ import ua.com.clothes_shop.entity.TargetAudience;
 import ua.com.clothes_shop.entity.TypeOfClothing;
 import ua.com.clothes_shop.service.ItemOfClothingService;
 import ua.com.clothes_shop.specification.ItemOfClothingSpecification;
+import ua.com.clothes_shop.service.FileWriter;
+import ua.com.clothes_shop.service.FileWriter.Folder;
 
 @Service //в контексті спрінга створює біни
 public class ItemOfClothingServiceImpl implements ItemOfClothingService{
@@ -42,6 +36,9 @@ public class ItemOfClothingServiceImpl implements ItemOfClothingService{
 	
 	@Autowired
 	private ColorDao colorDao;
+	
+	@Autowired
+	private FileWriter fileWriter;
 
 	@Override
 	public void save(ItemOfClothingForm form) {
@@ -55,7 +52,13 @@ public class ItemOfClothingServiceImpl implements ItemOfClothingService{
 		entity.setSize(form.getSize());
 		entity.setTargetAudience(form.getTargetAudience());
 		entity.setTypeOfClothing(form.getTypeOfClothing());
+//		itemOfClothingDao.save(entity);
+		MultipartFile file = form.getFile();
+		entity = itemOfClothingDao.saveAndFlush(entity);
+		if(fileWriter.write(Folder.CLOTHES, file, entity.getId())){
+		entity.setVersion(entity.getVersion()+1);
 		itemOfClothingDao.save(entity);
+		}
 	}
 
 //	@Override

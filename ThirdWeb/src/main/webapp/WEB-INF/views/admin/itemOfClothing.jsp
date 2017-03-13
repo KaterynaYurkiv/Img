@@ -97,7 +97,7 @@
 	<div class="col-md-7 col-xs-12">
 	    <div class="row">
 			<div class="col-md-12 col-xs-12">
-				<form:form class="form-horizontal" action="/admin/ioc" method="POST" modelAttribute="itemOfClothing">
+				<form:form class="form-horizontal" action="/admin/ioc" method="POST" modelAttribute="itemOfClothing" enctype="multipart/form-data">
 				<custom:hiddenInputs excludeParams="itemName, marking, price, brand, targetAudience, typeOfClothing, color, size"/>
 				    <!-- тут пишемо дів для помилки бо це верхнє перше поле і над ним будемо виводити повідомлення про те, що такий об'єкт вже був в базі, якщо це відповідатиме дійсності -->
 				    <div class="form-group">
@@ -160,6 +160,12 @@
       						<form:select class="form-control" path="size" id="size" items="${sizes}" itemValue="id" itemLabel="size"/>
     					</div>
   					</div>
+  					<div class="form-group">
+     					<label for="file" class="col-sm-2 control-label">Image</label>
+     					<div class="col-sm-10">
+       						<input name="file" id="file" type="file">
+    					</div>
+   					</div>
   					<div class="form-group">
     					<div class="col-sm-offset-2 col-sm-10">
       						<button type="submit" class="btn btn-default">Create</button>
@@ -252,7 +258,8 @@
 			</div>
 		</div>--%>
 		<div class="row">
-			<div class="col-md-2 col-xs-2"><h4>Item name</h4></div>
+		    <div class="col-md-2 col-xs-2"><h4>Image</h4></div>
+			<div class="col-md-1 col-xs-1"><h4>Item name</h4></div>
 			<div class="col-md-1 col-xs-1"><h4>Marking</h4></div>
 			<div class="col-md-1 col-xs-1"><h4>Price</h4></div>			
 			<div class="col-md-1 col-xs-1"><h4>Brand</h4></div>
@@ -260,7 +267,7 @@
 			<div class="col-md-1 col-xs-1"><h4>Type</h4></div>
 			<div class="col-md-1 col-xs-1"><h4>Color</h4></div>
 			<div class="col-md-1 col-xs-1"><h4>Size</h4></div>
-			<div class="col-md-3 col-xs-3"><h4>Options</h4></div>
+			<div class="col-md-2 col-xs-2"><h4>Options</h4></div>
 		</div>
 <!-- 		спеціальний тег для роботи з всім що можна прогорнути а точніше з тим що імплементує Iterator<T> -->
 <!-- 		items -- це посилання на колекцію, ім'я потрібно  вказувати те яке ви передали в метод addAttribute першим параметром (в BrandController.java)-->
@@ -268,7 +275,8 @@
 			<c:forEach items="${page.content}" var="itemOfClothing">
 				<div class="row">
 <!-- 					тут все так само як на сервлетах -->
-					<div class="col-md-2 col-xs-2">${itemOfClothing.itemName.name}</div>
+                    <div class="col-md-2 col-xs-2"><img src="/images/clothes/${itemOfClothing.id}.jpg?version=${itemOfClothing.version}" width="100%"></div>
+					<div class="col-md-1 col-xs-1">${itemOfClothing.itemName.name}</div>
 					<div class="col-md-1 col-xs-1">${itemOfClothing.marking}</div>
 					<div class="col-md-1 col-xs-1">${itemOfClothing.price}</div>
 					<div class="col-md-1 col-xs-1">${itemOfClothing.brand.brandName}</div>
@@ -276,7 +284,7 @@
 					<div class="col-md-1 col-xs-1">${itemOfClothing.typeOfClothing.itemType}</div>
 					<div class="col-md-1 col-xs-1">${itemOfClothing.color.color}</div>
 					<div class="col-md-1 col-xs-1">${itemOfClothing.size.size}</div>
-					<div class="col-md-3 col-xs-3"><a class="btn btn-warning" href="/admin/ioc/update/${itemOfClothing.id}<custom:allParams/>">update</a>
+					<div class="col-md-2 col-xs-2"><a class="btn btn-warning" href="/admin/ioc/update/${itemOfClothing.id}<custom:allParams/>">update</a>
 					                               <a class="btn btn-danger" href="/admin/ioc/delete/${itemOfClothing.id}<custom:allParams/>">delete</a>
 					</div>
 				</div>

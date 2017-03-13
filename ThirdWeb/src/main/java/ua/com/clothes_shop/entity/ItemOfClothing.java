@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
 import javax.persistence.Table;
 
 
@@ -59,6 +58,15 @@ public class ItemOfClothing {
 		joinColumns=@JoinColumn(name="id_item_of_clothing"),
 		inverseJoinColumns=@JoinColumn(name="id_customer"))
 		private List<Customer> customers = new ArrayList<>();
+		
+		private int version; //якщо є форма, то треба це писати і в ентіті і у формі
+		
+		public int getVersion() {
+			return version;
+		}
+		public void setVersion(int version) {
+			this.version = version;
+		}
 		
 		public ItemOfClothing() {
 			// TODO Auto-generated constructor stub

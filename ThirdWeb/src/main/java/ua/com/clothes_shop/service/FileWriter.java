@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 public interface FileWriter {
 	
 	enum Folder{
-		COLOR //робимо, щоб створило папку color і не було хаосу
+		COLOR, CLOTHES //робимо, щоб створило папку color і не було хаосу
 	}
 	
 	//буде записувати картинку об'єкту знайденому по айді

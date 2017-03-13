@@ -1,5 +1,7 @@
 package ua.com.clothes_shop.dto.form;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import ua.com.clothes_shop.entity.Brand;
 import ua.com.clothes_shop.entity.Color;
 import ua.com.clothes_shop.entity.ItemName;
@@ -29,6 +31,22 @@ public class ItemOfClothingForm {
 	private Color color;
 
 	private Size size;
+	
+	private int version; //якщо є форма, то треба це писати і в ентіті і у формі
+	private MultipartFile file;
+	
+	public int getVersion() {
+		return version;
+	}
+	public void setVersion(int version) {
+		this.version = version;
+	}
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 
 	public int getId() {
 		return id;
