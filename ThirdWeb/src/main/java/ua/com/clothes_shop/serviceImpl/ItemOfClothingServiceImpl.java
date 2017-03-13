@@ -3,12 +3,10 @@ package ua.com.clothes_shop.serviceImpl;
 import java.math.BigDecimal;
 import java.util.List;
 
-//import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-//import org.springframework.transaction.annotation.Transactional;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,8 +23,8 @@ import ua.com.clothes_shop.entity.TargetAudience;
 import ua.com.clothes_shop.entity.TypeOfClothing;
 import ua.com.clothes_shop.service.ItemOfClothingService;
 import ua.com.clothes_shop.specification.ItemOfClothingSpecification;
-import ua.com.clothes_shop.service.FileWriter;
-import ua.com.clothes_shop.service.FileWriter.Folder;
+import ua.com.clothes_shop.service.FileWriterItem;
+import ua.com.clothes_shop.service.FileWriterItem.Folder;
 
 @Service //в контексті спрінга створює біни
 public class ItemOfClothingServiceImpl implements ItemOfClothingService{
@@ -38,7 +36,7 @@ public class ItemOfClothingServiceImpl implements ItemOfClothingService{
 	private ColorDao colorDao;
 	
 	@Autowired
-	private FileWriter fileWriter;
+	private FileWriterItem fileWriter;
 
 	@Override
 	public void save(ItemOfClothingForm form) {

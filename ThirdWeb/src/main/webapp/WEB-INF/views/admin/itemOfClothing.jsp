@@ -258,8 +258,7 @@
 			</div>
 		</div>--%>
 		<div class="row">
-		    <div class="col-md-2 col-xs-2"><h4>Image</h4></div>
-			<div class="col-md-1 col-xs-1"><h4>Item name</h4></div>
+			<div class="col-md-2 col-xs-2"><h4>Item name</h4></div>
 			<div class="col-md-1 col-xs-1"><h4>Marking</h4></div>
 			<div class="col-md-1 col-xs-1"><h4>Price</h4></div>			
 			<div class="col-md-1 col-xs-1"><h4>Brand</h4></div>
@@ -267,16 +266,15 @@
 			<div class="col-md-1 col-xs-1"><h4>Type</h4></div>
 			<div class="col-md-1 col-xs-1"><h4>Color</h4></div>
 			<div class="col-md-1 col-xs-1"><h4>Size</h4></div>
-			<div class="col-md-2 col-xs-2"><h4>Options</h4></div>
+			<div class="col-md-3 col-xs-3"><h4>Options</h4></div>
 		</div>
 <!-- 		спеціальний тег для роботи з всім що можна прогорнути а точніше з тим що імплементує Iterator<T> -->
 <!-- 		items -- це посилання на колекцію, ім'я потрібно  вказувати те яке ви передали в метод addAttribute першим параметром (в BrandController.java)-->
 <!-- 		var -- це назва одного елемента колекції доступна лише в середині парного тегу c:forEach -->
 			<c:forEach items="${page.content}" var="itemOfClothing">
 				<div class="row">
-<!-- 					тут все так само як на сервлетах -->
-                    <div class="col-md-2 col-xs-2"><img src="/images/clothes/${itemOfClothing.id}.jpg?version=${itemOfClothing.version}" width="100%"></div>
-					<div class="col-md-1 col-xs-1">${itemOfClothing.itemName.name}</div>
+<!-- 					тут все так само як на сервлетах -->                   
+					<div class="col-md-2 col-xs-2">${itemOfClothing.itemName.name}</div>
 					<div class="col-md-1 col-xs-1">${itemOfClothing.marking}</div>
 					<div class="col-md-1 col-xs-1">${itemOfClothing.price}</div>
 					<div class="col-md-1 col-xs-1">${itemOfClothing.brand.brandName}</div>
@@ -284,9 +282,12 @@
 					<div class="col-md-1 col-xs-1">${itemOfClothing.typeOfClothing.itemType}</div>
 					<div class="col-md-1 col-xs-1">${itemOfClothing.color.color}</div>
 					<div class="col-md-1 col-xs-1">${itemOfClothing.size.size}</div>
-					<div class="col-md-2 col-xs-2"><a class="btn btn-warning" href="/admin/ioc/update/${itemOfClothing.id}<custom:allParams/>">update</a>
+					<div class="col-md-3 col-xs-3"><a class="btn btn-warning" href="/admin/ioc/update/${itemOfClothing.id}<custom:allParams/>">update</a>
 					                               <a class="btn btn-danger" href="/admin/ioc/delete/${itemOfClothing.id}<custom:allParams/>">delete</a>
 					</div>
+				</div>
+				<div class="row">
+				       <div class="col-md-2 col-xs-2"><img src="/images/clothes/${itemOfClothing.id}.jpg?version=${itemOfClothing.version}" width="100%"></div>
 				</div>
 			</c:forEach>
 	</div>
